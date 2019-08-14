@@ -16,11 +16,12 @@ Hypervisor (VMWare Vsphere, KVM, ...) increased size of /dev/sda of your virtual
 
 You might want to increase the size of /dev/sda2. Use [growpart](http://manpages.ubuntu.com/manpages/precise/man1/growpart.1.html). You can use `fdisk`, too. But `growpart` is easier, since not interactive.
 
-Reload the partition table with `partprobe`.
+Reload the partition table with `partprobe`. 
 
-You need to resize the physical volume: `pvresize /dev/sda2`
+If you use lvm:
 
-Increase the size of the logical volumen: `lvresize -l +100%FREE system/home`
+ * You need to resize the physical volume: `pvresize /dev/sda2`
+ * Increase the size of the logical volumen: `lvresize -l +100%FREE system/home`
 
 Increase the size of the filesystem: `resize2fs /dev/mapper/system-home`
 
